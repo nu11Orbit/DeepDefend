@@ -6,7 +6,7 @@ import { jsonFetch, type HistoryItem } from "@/lib/api"
 import { VerdictBadge } from "./verdict-badge"
 
 export function RecentAnalyses() {
-  const { data, error, isLoading } = useSWR<HistoryItem[]>("/history?limit=10", (path : any) => jsonFetch(path), {
+  const { data, error, isLoading } = useSWR<HistoryItem[]>("/history?limit=10", (path) => jsonFetch(path), {
     refreshInterval: 10000,
   })
 
@@ -20,7 +20,7 @@ export function RecentAnalyses() {
         {error && <p className="text-sm text-destructive">Failed to load history.</p>}
         <ScrollArea className="h-72">
           <ul className="space-y-3">
-            {(data || []).map((item : any) => (
+            {(data || []).map((item) => (
               <li key={item.analysis_id} className="flex items-start justify-between gap-3 rounded-md border p-3">
                 <div className="min-w-0">
                   <p className="truncate text-sm font-medium">{item.filename}</p>
