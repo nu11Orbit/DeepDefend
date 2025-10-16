@@ -7,6 +7,7 @@ import "./globals.css";
 import { ThemeToggle } from "@/components/theme-toggle"
 import Script from "next/script"
 import { Analytics } from "@vercel/analytics/next"
+import { CircularCursor } from "@/components/circular-cursor";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,11 +42,12 @@ export default function RootLayout({
           } catch {}
         `}</Script>
       </head>
-      <body className={`font-sans ${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`relative cursor-none font-sans ${geistSans.variable} ${geistMono.variable}`}>
         <header className="border-b bg-background">
           <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
             <Link href="/" className="text-2xl font-bold">
-              DeepDefend
+              <span className="text-blue-400">Defend</span>
+              <span className="text-pink-300">Deep</span>
             </Link>
             <nav className="flex items-center gap-3">
               <Link href="/" className="text-sm text-muted-foreground hover:text-foreground">
@@ -60,6 +62,8 @@ export default function RootLayout({
         </header>
 
         <Suspense fallback={<div className="px-4 py-6">Loading...</div>}>{children}</Suspense>
+
+        <CircularCursor />
         <Analytics />
       </body>
     </html>

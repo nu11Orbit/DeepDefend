@@ -41,7 +41,7 @@ export default function Page() {
           </p>
           <div className="flex flex-wrap justify-center sm:justify-end gap-4">
             <a
-              href="https://github.com/your-repo"
+              href="https://github.com/"
               target="_blank"
               rel="noreferrer"
               className="hover:text-gray-900 dark:hover:text-white transition-colors"
