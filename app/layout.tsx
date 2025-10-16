@@ -20,9 +20,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DeepDefend UI",
-  description: "Frontend for DeepDefend API",
-  generator: "v0.app",
+  title: "DeepDefend – AI Video & Audio Analysis",
+  description: "DeepDefend for AI-powered video and audio analysis, providing fast insights and content detection.",
+  applicationName: "DeepDefend",
+  authors: [{ name: "DeepDefend Team" }],
+  keywords: ["AI", "Video Analysis", "Audio Analysis", "Content Detection", "DeepDefend", "Machine Learning"],
+  robots: "index, follow",
 };
 
 export default function RootLayout({
