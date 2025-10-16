@@ -34,16 +34,34 @@ export default function Page() {
         <SystemStats />
       </div>
 
-      <footer className="mb-8 text-center text-xs text-muted-foreground">
-        {"Service: DeepDefend API • Minimal UI • "}
-        <a
-          href="https://vercel.com"
-          target="_blank"
-          rel="noreferrer"
-          className="underline decoration-dotted underline-offset-4"
-        >
-          Built on Next.js
-        </a>
+      <footer className="mt-12 border-t border-gray-300 dark:border-gray-700 py-6 text-sm text-gray-600 dark:text-gray-400">
+        <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="text-center sm:text-left">
+            &copy; {new Date().getFullYear()} DeepDefend • AI Video Analysis
+          </p>
+          <div className="flex flex-wrap justify-center sm:justify-end gap-4">
+            <a
+              href="https://github.com/your-repo"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-gray-900 dark:hover:text-white transition-colors"
+            >
+              GitHub
+            </a>
+            <a
+              href="/privacy"
+              className="hover:text-gray-900 dark:hover:text-white transition-colors"
+            >
+              Privacy
+            </a>
+            <a
+              href="/terms"
+              className="hover:text-gray-900 dark:hover:text-white transition-colors"
+            >
+              Terms
+            </a>
+          </div>
+        </div>
       </footer>
     </main>
   )
