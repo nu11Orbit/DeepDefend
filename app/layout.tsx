@@ -44,7 +44,7 @@ export default function RootLayout({
       <body className={`font-sans ${geistSans.variable} ${geistMono.variable}`}>
         <header className="border-b bg-background">
           <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
-            <Link href="/" className="text-sm font-semibold">
+            <Link href="/" className="text-2xl font-bold">
               DeepDefend
             </Link>
             <nav className="flex items-center gap-3">

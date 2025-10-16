@@ -24,7 +24,7 @@ function AnimatedTorus(props: JSX.IntrinsicElements["mesh"]) {
 export function ThreeHero() {
   return (
     <div className="w-full h-[60vh] rounded-b-xl border-b bg-background">
-      <Canvas camera={{ position: [2, 1.5, 3], fov: 50 }}>
+      <Canvas camera={{ position: [2, 1.5, 3], fov: 30 }}>
         <ambientLight intensity={0.6} />
         <directionalLight position={[5, 5, 5]} intensity={0.8} />
         <Suspense fallback={null}>
