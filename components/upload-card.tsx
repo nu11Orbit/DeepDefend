@@ -8,6 +8,7 @@ import { analyzeVideo } from "@/lib/api"
 import LoaderOverlay from "@/components/loader-overlay"
 import { Loader2 } from "lucide-react"
 import AnalysisReport from "@/components/analysis-report"
+import { StaticWobbleCard } from "./ui/staticwobble-card"
 
 type Result = {
   analysis_id: string
@@ -89,6 +90,7 @@ export function UploadCard({
   return (
     <>
       <LoaderOverlay active={loading} text="Uploading and analyzing… This may take a moment." />
+      <StaticWobbleCard containerClassName="bg-blue-900">
       <Card>
         <CardHeader>
           <CardTitle>DeepDefend – Analyze Video</CardTitle>
@@ -124,6 +126,7 @@ export function UploadCard({
           )}
         </CardContent>
       </Card>
+      </StaticWobbleCard>
     </>
   )
 }

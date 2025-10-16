@@ -3,6 +3,7 @@ import useSWR from "swr"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { jsonFetch } from "@/lib/api"
+import { StaticWobbleCard } from "./ui/staticwobble-card"
 
 type Interval = {
   interval_id: number
@@ -53,6 +54,7 @@ export function SuspiciousIntervals({ analysisId }: { analysisId?: string }) {
   const intervals = (data?.intervals || []).filter((it) => it.verdict === "SUSPICIOUS")
 
   return (
+    <StaticWobbleCard containerClassName="bg-pink-800">
     <Card>
       <CardHeader>
         <CardTitle>Suspicious Intervals</CardTitle>
@@ -92,5 +94,6 @@ export function SuspiciousIntervals({ analysisId }: { analysisId?: string }) {
         )}
       </CardContent>
     </Card>
+    </StaticWobbleCard>
   )
 }
