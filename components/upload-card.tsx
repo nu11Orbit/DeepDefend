@@ -5,16 +5,38 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 import { analyzeVideo } from "@/lib/api"
-import { VerdictBadge } from "./verdict-badge"
-import { ConfidenceBar } from "./confidence-bar"
 import LoaderOverlay from "@/components/loader-overlay"
 import { Loader2 } from "lucide-react"
+import AnalysisReport from "@/components/analysis-report"
 
 type Result = {
   analysis_id: string
   verdict: string
   confidence: number
   timestamp: string
+}
+
+type FullAnalysisResult = {
+  analysis_id: string
+  verdict: string
+  confidence: number
+  timestamp: string
+  overall_scores?: {
+    overall_video_score?: number
+    overall_audio_score?: number
+    overall_combined_score?: number
+  }
+  detailed_analysis?: string
+  suspicious_intervals?: Array<{
+    interval: string
+    video_score?: number
+    audio_score?: number
+    video_regions?: string[]
+    audio_regions?: string[]
+  }>
+  total_intervals_analyzed?: number
+  video_info?: { duration?: number; fps?: number; total_frames?: number; file_size_mb?: number }
+  filename?: string
 }
 
 export function UploadCard({
@@ -25,7 +47,7 @@ export function UploadCard({
   const [file, setFile] = React.useState<File | null>(null)
   const [loading, setLoading] = React.useState(false)
   const [error, setError] = React.useState<string | null>(null)
-  const [result, setResult] = React.useState<Result | null>(null)
+  const [result, setResult] = React.useState<FullAnalysisResult | null>(null)
 
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const f = e.target.files?.[0] || null
@@ -47,15 +69,15 @@ export function UploadCard({
         type: file.type,
       })
       const res = await analyzeVideo(file, 2.0)
-      const r: Result = {
+      const summary: Result = {
         analysis_id: res.analysis_id,
         verdict: res.verdict,
         confidence: Math.round(res.confidence ?? 0),
         timestamp: res.timestamp,
       }
-      console.log("[v0] Analysis success:", r)
-      setResult(r)
-      onAnalyzed(r)
+      console.log("[v0] Analysis success:", summary)
+      setResult(res)
+      onAnalyzed(summary)
     } catch (e: any) {
       console.log("[v0] Analysis error:", e)
       setError(e?.message || "Analysis failed")
@@ -97,16 +119,7 @@ export function UploadCard({
           {result && (
             <>
               <Separator />
-              <div className="flex flex-col gap-3">
-                <div className="flex items-center justify-between">
-                  <p className="text-sm text-muted-foreground">Verdict</p>
-                  <VerdictBadge verdict={result.verdict} />
-                </div>
-                <ConfidenceBar value={result.confidence} />
-                <p className="text-xs text-muted-foreground">
-                  Analyzed at {new Date(result.timestamp).toLocaleString()}
-                </p>
-              </div>
+              <AnalysisReport data={result} />
             </>
           )}
         </CardContent>

@@ -1,7 +1,6 @@
 export const API_BASE =
-  typeof window !== "undefined"
-    ? process.env.NEXT_PUBLIC_API_BASE || "/api"
-    : process.env.NEXT_PUBLIC_API_BASE || "/api"
+  (process.env.NEXT_PUBLIC_API_BASE?.replace(/\/$/, "")) ||
+  "/api"
 
 if (typeof window !== "undefined") {
   // Using [v0] prefix to surface logs in Preview

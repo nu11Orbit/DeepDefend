@@ -13,3 +13,5 @@ export function ConfidenceBar({ value }: { value?: number }) {
     </div>
   )
 }
+
+export default ConfidenceBar

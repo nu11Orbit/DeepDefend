@@ -16,3 +16,5 @@ export function VerdictBadge({ verdict }: { verdict?: string }) {
     </span>
   )
 }
+
+export default VerdictBadge
