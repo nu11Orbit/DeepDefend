@@ -7,6 +7,7 @@ if (typeof window !== "undefined") {
   console.log("[v0] API_BASE resolved to:", API_BASE)
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function jsonFetch<T = any>(path: string, init?: RequestInit): Promise<T> {
   const url = `${API_BASE}${path}`
   console.log("[v0] jsonFetch ->", url)
@@ -53,6 +54,7 @@ export async function analyzeVideo(file: File, intervalDuration = 2.0) {
       overall_video_score?: number
       overall_audio_score?: number
     }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     suspicious_intervals?: any[]
     total_intervals_analyzed?: number
     video_info?: { duration?: number; fps?: number; total_frames?: number; file_size_mb?: number }

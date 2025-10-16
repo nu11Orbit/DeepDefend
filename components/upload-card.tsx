@@ -79,6 +79,7 @@ export function UploadCard({
       console.log("[v0] Analysis success:", summary)
       setResult(res)
       onAnalyzed(summary)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (e: any) {
       console.log("[v0] Analysis error:", e)
       setError(e?.message || "Analysis failed")
