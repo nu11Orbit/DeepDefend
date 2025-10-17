@@ -64,7 +64,7 @@ export function UploadCard({
     setError(null)
     setLoading(true)
     try {
-      console.log("[v0] Starting analysis for:", {
+      console.log("Starting analysis for:", {
         name: file.name,
         sizeBytes: file.size,
         type: file.type,
@@ -76,12 +76,12 @@ export function UploadCard({
         confidence: Math.round(res.confidence ?? 0),
         timestamp: res.timestamp,
       }
-      console.log("[v0] Analysis success:", summary)
+      console.log("Analysis success:", summary)
       setResult(res)
       onAnalyzed(summary)
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (e: any) {
-      console.log("[v0] Analysis error:", e)
+      console.log("Analysis error:", e)
       setError(e?.message || "Analysis failed")
     } finally {
       setLoading(false)
@@ -105,7 +105,7 @@ export function UploadCard({
               aria-label="Upload video file"
               disabled={loading}
             />
-            <Button onClick={onAnalyze} disabled={loading || !file}>
+            <Button onClick={onAnalyze} disabled={loading || !file} className="bg-pink-500 text-white">
               {loading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />

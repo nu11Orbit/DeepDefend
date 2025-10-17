@@ -29,10 +29,11 @@ export type AnalysisReportData = {
   suspicious_intervals?: SuspiciousInterval[]
 }
 
-function percent(n?: number) {
-  if (typeof n !== "number" || Number.isNaN(n)) return 0
-  // If it's already 0..100 keep it, else convert from 0..1
-  return n > 1 ? Math.max(0, Math.min(100, n)) : Math.round(n * 100)
+function percent(n?: number | string) {
+  if (n == null) return 0
+  const num = typeof n === "string" ? parseFloat(n) : n
+  if (Number.isNaN(num)) return 0
+  return num > 1 ? Math.min(100, Math.max(0, num)) : Math.round(num * 100)
 }
 
 function ScoreRow({
@@ -54,7 +55,11 @@ function ScoreRow({
       {/* simple progress bar themed via tokens */}
       <div className="h-2 w-full rounded-full bg-muted">
         <div
-          className={cn("h-2 rounded-full", pct >= 70 ? "bg-destructive" : pct >= 40 ? "bg-accent" : "bg-primary")}
+          className={cn("h-2 rounded-full", pct >= 70
+            ? "bg-rose-600 dark:bg-rose-700"
+            : pct >= 40
+            ? "bg-cyan-500 dark:bg-cyan-600"
+            : "bg-emerald-600 dark:bg-emerald-700" )}
           style={{ width: `${pct}%` }}
           aria-valuemin={0}
           aria-valuemax={100}
@@ -84,7 +89,7 @@ export default function AnalysisReport({ data }: { data: AnalysisReportData }) {
       a.remove()
       URL.revokeObjectURL(url)
     } catch (err) {
-      console.log("[v0] Failed to download analysis JSON:", err)
+      console.log("Failed to download analysis JSON:", err)
     }
   }
 
@@ -270,7 +275,7 @@ export default function AnalysisReport({ data }: { data: AnalysisReportData }) {
       a.remove()
       URL.revokeObjectURL(url)
     } catch (err) {
-      console.log("[v0] Failed to download HTML report:", err)
+      console.log("Failed to download HTML report:", err)
     }
   }
 
@@ -294,9 +299,8 @@ export default function AnalysisReport({ data }: { data: AnalysisReportData }) {
 
           <Button
             type="button"
-            variant="default"
             size="sm"
-            className="shrink-0"
+            className="shrink-0 bg-rose-500 text-white"
             onClick={handleDownloadHTML}
             aria-label="Download Analysis Report"
             title="Download Analysis Report (HTML)"
@@ -307,9 +311,8 @@ export default function AnalysisReport({ data }: { data: AnalysisReportData }) {
 
           <Button
             type="button"
-            variant="secondary"
             size="sm"
-            className="shrink-0"
+            className="shrink-0 bg-blue-900 text-white"
             onClick={handleDownloadJSON}
             aria-label="Download Analysis JSON"
             title="Download Analysis JSON"

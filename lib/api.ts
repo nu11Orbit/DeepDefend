@@ -3,14 +3,13 @@ export const API_BASE =
   "/api"
 
 if (typeof window !== "undefined") {
-  // Using [v0] prefix to surface logs in Preview
-  console.log("[v0] API_BASE resolved to:", API_BASE)
+  console.log("API_BASE resolved to:", API_BASE)
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function jsonFetch<T = any>(path: string, init?: RequestInit): Promise<T> {
   const url = `${API_BASE}${path}`
-  console.log("[v0] jsonFetch ->", url)
+  // e.log("jsonFetch ->", url)
   const res = await fetch(url, {
     ...init,
     headers: {
@@ -31,11 +30,11 @@ export async function analyzeVideo(file: File, intervalDuration = 2.0) {
   const qs = new URLSearchParams({ interval_duration: String(intervalDuration) }).toString()
   const url = `${API_BASE}/analyze?${qs}`
 
-  console.log("[v0] analyzeVideo POST ->", url, {
-    fileName: file.name,
-    fileSizeBytes: file.size,
-    fileType: file.type,
-  })
+  // console.log("analyzeVideo POST ->", url, {
+  //   fileName: file.name,
+  //   fileSizeBytes: file.size,
+  //   fileType: file.type,
+  // })
 
   const res = await fetch(url, {
     method: "POST",
