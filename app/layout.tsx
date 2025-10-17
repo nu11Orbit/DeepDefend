@@ -49,8 +49,8 @@ export default function RootLayout({
         <header className="border-b bg-background">
           <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
             <Link href="/" className="text-2xl font-bold">
-              <span className="text-blue-400">Defend</span>
-              <span className="text-pink-300">Deep</span>
+              <span className="text-blue-400">Deep</span>
+              <span className="text-pink-300">Defend</span>
             </Link>
             <nav className="flex items-center gap-3">
               <Link href="/" className="text-sm text-muted-foreground hover:text-foreground">
