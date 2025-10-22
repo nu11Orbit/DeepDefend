@@ -21,7 +21,7 @@ export default function UploadPage() {
         <div>
           <h1 className="text-balance text-2xl font-semibold tracking-tight md:text-3xl">Upload Video</h1>
           <p className="mt-2 text-pretty text-sm text-muted-foreground">
-            Supported formats: MP4, MOV, AVI, MKV, WEBM. Max size 250MB.
+            Supported formats: MP4, MOV, AVI, MKV, WEBM. Max size 2MB.
           </p>
         </div>
         <Button variant="outline" asChild>
